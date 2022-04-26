@@ -2,6 +2,10 @@
   "name": "dashboard-e2e-network-monitoring-pn",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "workspaces/*"
+  ],
   "repository": "git@github.com-sundarenius:sundarenius/dashboard-e2e-network-monitoring-pn.git",
   "author": "Håkan Sundström <sundarenius@gmail.com>",
   "license": "MIT"
