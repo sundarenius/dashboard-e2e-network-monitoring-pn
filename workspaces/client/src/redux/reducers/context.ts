@@ -1,20 +1,21 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import { chartTypes } from 'utils/helpers';
 
 interface InitialState {
-  dummy: number,
+  chart: Record<any, any>,
 }
 
 const initialState: InitialState = {
-  dummy: 0,
+  chart: chartTypes[0],
 };
 
 export const contextSlice = createSlice({
   name: 'Context',
   initialState,
   reducers: {
-    setDummy: (state, action: PayloadAction<number>) => {
-      state.dummy = action.payload;
+    setChart: (state, action: PayloadAction<Record<any, any>>) => {
+      state.chart = action.payload;
     },
   },
 });

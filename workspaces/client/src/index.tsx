@@ -9,6 +9,7 @@ import {
   Dimmer,
   Loader,
 } from 'semantic-ui-react';
+import 'chart.js/auto';
 
 const App = React.lazy(() => import('./App'));
 
