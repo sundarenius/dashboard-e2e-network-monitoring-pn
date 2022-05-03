@@ -21,18 +21,16 @@ const Header:FC<Props> = (): JSX.Element => {
   };
 
   return (
-    <>
-      <Menu pointing>
-        {chartTypes.map((c) => (
-          <Menu.Item
-            key={c.type}
-            name={c.type}
-            active={c.type === chart.type}
-            onClick={handleItemClick}
-          />
-        ))}
-      </Menu>
-    </>
+    <Menu>
+      {chartTypes.map((c) => (
+        <Menu.Item
+          key={c.type}
+          name={c.type}
+          active={c.type === chart.type}
+          onClick={handleItemClick}
+        />
+      ))}
+    </Menu>
   );
 };
 
