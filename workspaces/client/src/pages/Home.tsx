@@ -27,7 +27,7 @@ const Home:FC<Props> = (): JSX.Element => {
         Just testing different setups here, <strong> NO real structure yet</strong>.
       </p>
       <ChartLayout>
-        <div style={{ position: 'relative', maxHeight: '60vh', maxWidth: '30vw' }}>
+        <div style={{ position: 'relative', maxHeight: '60vh', maxWidth: '40vw' }}>
           <chart.cmpnt {...cmpntProps} />
         </div>
       </ChartLayout>

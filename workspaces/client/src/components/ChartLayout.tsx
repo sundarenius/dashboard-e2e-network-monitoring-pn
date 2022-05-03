@@ -36,7 +36,7 @@ const ChartLayout:FC<Props> = ({ children }): JSX.Element => {
         ))}
       </Menu>
 
-      <Segment.Group style={{ background: 'white' }}>
+      <Segment.Group style={{ background: 'white', height: '75vh' }}>
         {children}
       </Segment.Group>
     </div>
