@@ -4,7 +4,8 @@ import { useEffect, useCallback } from 'react';
 import {
   useAppSelector,
 } from 'redux/redux-hooks';
-import { options, initChart } from 'utils/helpers';
+import { options } from 'utils/helpers';
+import { initChart } from 'utils/init-chart';
 import ChartLayout from 'components/ChartLayout';
 import { cloneDeep } from 'lodash';
 
