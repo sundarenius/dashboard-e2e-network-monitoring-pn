@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import type { FC } from 'react';
+import { useEffect, useCallback } from 'react';
 import {
   useAppSelector,
 } from 'redux/redux-hooks';
-import { options } from 'utils/helpers';
+import { options, initChart } from 'utils/helpers';
 import ChartLayout from 'components/ChartLayout';
+import { cloneDeep } from 'lodash';
 
 interface Props {}
 
@@ -14,10 +16,18 @@ const Home:FC<Props> = (): JSX.Element => {
     selectedSection,
   } = useAppSelector(({ context }) => context);
 
-  const cmpntProps = {
-    data: selectedSection.data,
+  const cmpntProps = useCallback(() => ({
+    data: cloneDeep(selectedSection.data),
     options,
-  };
+  }), [selectedSection]);
+
+  useEffect(() => {
+    const data = {
+      type: chart.type,
+      ...cmpntProps(),
+    };
+    initChart(data);
+  }, [cmpntProps, chart]);
 
   return (
     <>
@@ -28,7 +38,7 @@ const Home:FC<Props> = (): JSX.Element => {
       </p>
       <ChartLayout>
         <div style={{ position: 'relative', maxHeight: '60vh', maxWidth: '40vw' }}>
-          <chart.cmpnt {...cmpntProps} />
+          <div id="my-chart-container" />
         </div>
       </ChartLayout>
     </>

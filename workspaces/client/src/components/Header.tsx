@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-// import { useState } from 'react';
 import { Menu } from 'semantic-ui-react';
 import {
   useAppSelector,
@@ -15,8 +14,7 @@ const Header:FC<Props> = (): JSX.Element => {
   const chart = useAppSelector(({ context }) => context.chart);
 
   const handleItemClick = (e: any, data: any) => {
-    const chartData = chartTypes.find((val) => val.type === data.name) as Record<any, any>;
-    console.log(chartData);
+    const chartData = chartTypes.find((val) => val.name === data.name) as Record<any, any>;
     dispatch(contextActions.setChart(chartData));
   };
 
@@ -24,9 +22,9 @@ const Header:FC<Props> = (): JSX.Element => {
     <Menu>
       {chartTypes.map((c) => (
         <Menu.Item
-          key={c.type}
-          name={c.type}
-          active={c.type === chart.type}
+          key={c.name}
+          name={c.name}
+          active={c.name === chart.name}
           onClick={handleItemClick}
         />
       ))}

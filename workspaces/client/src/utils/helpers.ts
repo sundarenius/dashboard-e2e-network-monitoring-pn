@@ -1,13 +1,58 @@
-import {
-  Bar,
-  Line,
-  Pie,
-  Doughnut,
-  PolarArea,
-  Radar,
-  Scatter,
-  Bubble,
-} from 'react-chartjs-2';
+// import { cloneDeep } from 'lodash';
+
+declare global {
+  interface Window {
+    Chart: any;
+    myChartSaved: any;
+  }
+}
+
+const getChartElAndDestroy = () => {
+  const chartContainer = document.querySelector('#my-chart-container') as HTMLElement;
+
+  chartContainer.innerHTML = '';
+  const canvas = document.createElement('canvas');
+  canvas.id = 'my-chart';
+
+  let child = chartContainer.lastElementChild;
+  while (child) {
+    chartContainer.removeChild(child);
+    child = chartContainer.lastElementChild;
+  }
+
+  chartContainer.appendChild(canvas);
+
+  const canvasEl = document.querySelector('#my-chart') as HTMLElement;
+
+  if (window.myChartSaved) {
+    window.myChartSaved.destroy();
+    window.myChartSaved = null;
+  }
+  return canvasEl;
+};
+
+export const initChart = (config) => {
+  const canvasEl = getChartElAndDestroy();
+
+  // await new Promise<void>((resolve) => {
+  //   setTimeout(() => {
+  //     resolve();
+  //   }, 500);
+  // });
+
+  if (window.myChartSaved) {
+    window.myChartSaved.destroy();
+  }
+
+  const myChart = new window.Chart(
+    canvasEl,
+    config,
+  );
+
+  myChart.update();
+
+  window.myChartSaved = myChart;
+};
 
 export const options = {
   responsive: true,
@@ -24,35 +69,35 @@ export const options = {
 
 export const chartTypes = [
   {
-    type: 'Bar chart',
-    cmpnt: Bar,
+    name: 'Bar chart',
+    type: 'bar',
   },
   {
-    type: 'Line chart',
-    cmpnt: Line,
+    name: 'Line chart',
+    type: 'line',
   },
   {
-    type: 'Pie chart',
-    cmpnt: Pie,
+    name: 'Pie chart',
+    type: 'pie',
   },
   {
-    type: 'Doughnut chart',
-    cmpnt: Doughnut,
+    name: 'Doughnut chart',
+    type: 'doughnut',
+  },
+  // {
+  //   name: 'PolarArea chart',
+  //   type: 'polarArea',
+  // },
+  // {
+  //   name: 'Radar chart',
+  //   type: 'radar',
+  // },
+  {
+    name: 'Scatter chart',
+    type: 'scatter',
   },
   {
-    type: 'PolarArea chart',
-    cmpnt: PolarArea,
-  },
-  {
-    type: 'Radar chart',
-    cmpnt: Radar,
-  },
-  {
-    type: 'Scatter chart',
-    cmpnt: Scatter,
-  },
-  {
-    type: 'Bubble chart',
-    cmpnt: Bubble,
+    name: 'Bubble chart',
+    type: 'bubble',
   },
 ];
