@@ -28,14 +28,14 @@ export const chartTypes = [
     name: 'Doughnut chart',
     type: 'doughnut',
   },
-  // {
-  //   name: 'PolarArea chart',
-  //   type: 'polarArea',
-  // },
-  // {
-  //   name: 'Radar chart',
-  //   type: 'radar',
-  // },
+  {
+    name: 'PolarArea chart',
+    type: 'polarArea',
+  },
+  {
+    name: 'Radar chart',
+    type: 'radar',
+  },
   {
     name: 'Scatter chart',
     type: 'scatter',
